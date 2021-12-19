@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { DogsService } from "./dogs.service";
 
 // URL of dog api:
@@ -10,11 +10,13 @@ import { DogsService } from "./dogs.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
+
   title = "coding-challenge";
   dogUrl = "";
   dogHistory: Array<string> = [];
   historyIndex: number = 0;
+
   constructor(private dogsService: DogsService) {
   }
 
@@ -22,12 +24,14 @@ export class AppComponent implements OnInit{
       this.getDog();
   }
 
-  public onClickPrevious(event: MouseEvent) {
-    this.historyIndex--;
-    this.getDogFromHistory();
+  public onClickPrevious() {
+    if(this.historyIndex) {
+      this.historyIndex--;
+      this.getDogFromHistory();
+    }
   }
 
-  public onClickNext(event: MouseEvent) {
+  public onClickNext() {
     this.historyIndex++;
     if(this.historyIndex === this.dogHistory.length) {
       this.getDog();
@@ -50,4 +54,16 @@ export class AppComponent implements OnInit{
   saveDog(dogUrl: string) {
     this.dogHistory.push(dogUrl);
   }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    console.log(event.key)
+    if (event.key === "ArrowLeft") {
+      this.onClickPrevious();
+    }
+    if (event.key === "ArrowRight") {
+      this.onClickNext();
+    }
+  }
+
 }
