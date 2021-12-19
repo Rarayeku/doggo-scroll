@@ -1,0 +1,16 @@
+<h1 class="headline">Dog Gallery!</h1>
+
+<div class="container">
+  <div class="container__prev">
+    <button [disabled]="!historyIndex" class="button" (click)="onClickPrevious($event)">
+      Previous
+    </button>
+  </div>
+  <div class="container__picture">
+    <!-- <img src="https://dummyimage.com/600x400/000/fff&text=No+Dog+:(" /> -->
+    <img [src]="dogUrl" />
+  </div>
+  <div class="container__next">
+    <button  class="button" (click)="onClickNext($event)">Next</button>
+  </div>
+</div>
