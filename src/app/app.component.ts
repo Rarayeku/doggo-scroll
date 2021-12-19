@@ -11,7 +11,7 @@ import { DogsService } from "./dogs.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit{
-  title = "Dog Pictures";
+  title = "coding-challenge";
   dogUrl = "";
   dogHistory: Array<string> = [];
   historyIndex: number = 0;

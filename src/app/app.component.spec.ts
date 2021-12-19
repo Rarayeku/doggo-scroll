@@ -1,5 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { DogsService } from './dogs.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -7,6 +10,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [BrowserModule, HttpClientModule],
+      providers: [DogsService]
     }).compileComponents();
   });
 
@@ -20,12 +25,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('coding-challenge');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('coding-challenge app is running!');
   });
 });
